@@ -5,6 +5,7 @@
 <p align="center">
   <a href="#citation"><img src="https://img.shields.io/badge/arXiv-coming_soon-b31b1b?style=flat-square&logo=arxiv&logoColor=white" alt="arXiv"></a>
   <a href="https://github.com/RoboMME/robomme_policy_learning"><img src="https://img.shields.io/badge/Benchmark-RoboMME-2588a6?style=flat-square" alt="RoboMME"></a>
+  <a href="https://huggingface.co/benni23/memory-clock"><img src="https://img.shields.io/badge/Hugging_Face-Models-ffd21e?style=flat-square&logo=huggingface&logoColor=black" alt="Hugging Face Models"></a>
   <img src="https://img.shields.io/badge/Python-3.11-3776ab?style=flat-square&logo=python&logoColor=white" alt="Python 3.11">
   <img src="https://img.shields.io/badge/JAX-openpi-f57c00?style=flat-square" alt="JAX / openpi">
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-green?style=flat-square" alt="MIT License"></a>
@@ -85,11 +86,12 @@ bash download.sh train     # pi0.5 base weights and the preprocessed RoboMME tra
 | Model | Description | Source |
 |---|---|---|
 | `perceptual-framesamp-modul` | released RoboMME memory VLA (time-sampled, time-stamped memory) | [🤗 Yinpei/perceptual-framesamp-modul](https://huggingface.co/Yinpei/perceptual-framesamp-modul) |
-| `clock` / `clock-retrain` | the same design trained from pi0.5 base (30k steps) | coming soon |
-| `noclock` | the same without time encoding (`use_pos_emb: false`) | coming soon |
+| `clock` | the same design trained from pi0.5 base (30k steps) | [🤗 benni23/memory-clock](https://huggingface.co/benni23/memory-clock) |
+| `noclock` | the same without time encoding (`use_pos_emb: false`) | [🤗 benni23/memory-clock](https://huggingface.co/benni23/memory-clock) |
+| `clock-retrain` | a second training run of `clock` (control for pause augmentation) | coming soon |
 | `pauseaug` / `pauseaug-weak` | Clock trained with pauses injected into the memory timeline | coming soon |
 
-Until our checkpoints are hosted, each one can be trained with a single command (see [Training](#-training)).
+`bash download.sh` fetches all hosted checkpoints; any model can also be trained with a single command (see [Training](#-training)).
 
 ## 🚀 Quick Start
 

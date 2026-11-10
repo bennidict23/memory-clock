@@ -5,7 +5,7 @@
 #             pi0.5 without memory, MemER-style keyframes, text sub-goals) and the VLM sub-goal predictors
 #   train     pi0.5 base weights and the preprocessed RoboMME training data (~1 TB unpacked)
 # Released RoboMME checkpoints go where upstream expects them: $ROBOMME_DIR/runs/ckpts/<config>/<model>/79999.
-# The paper's trained policies go to checkpoints/<name>/29999 (name: clock, noclock, clock-retrain,
+# The paper's trained policies (huggingface.co/benni23/memory-clock) go to checkpoints/<name>/29999 (name: clock, noclock, clock-retrain,
 # pauseaug, pauseaug-weak).
 set -euo pipefail
 REPO=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
@@ -44,17 +44,12 @@ main() {
   mkdir -p runs/assets/mme_vla_scratch/robomme
   cp "$CK/mme_vla_suite/perceptual-framesamp-modul/79999/assets/robomme/norm_stats.json" runs/assets/mme_vla_scratch/robomme/
   openpi_assets
-  # The paper's policies trained from pi0.5 base (30k steps). TODO: replace with the final hosting location.
-  TRAINED_URL=${TRAINED_URL:-"https://TODO-anonymous-hosting/memory-clock-checkpoints"}
+  # The paper's policies trained from pi0.5 base (30k steps), hosted at huggingface.co/benni23/memory-clock
   for name in clock noclock clock-retrain pauseaug pauseaug-weak; do
     dst=$REPO/checkpoints/$name
     [ -d "$dst/29999/params" ] && { echo "[skip] $dst"; continue; }
-    if [[ $TRAINED_URL == *TODO* ]]; then
-      echo "[todo] $name: trained checkpoints are not hosted yet; train it with: bash train.sh $name"; continue
-    fi
-    mkdir -p "$dst" && curl -fL "$TRAINED_URL/$name.tar" | tar -x -C "$dst"   # -> $dst/29999/{params,assets}
-    case $name in noclock) echo -n perceptual-framesamp-modul-noclock.yaml;; *) echo -n perceptual-framesamp-modul.yaml;; esac \
-      > "$dst/history_config.txt"
+    $HF download benni23/memory-clock --include "$name/*" --local-dir "$REPO/checkpoints"
+    [ -d "$dst/29999/params" ] || echo "[todo] $name is not on Hugging Face yet; train it with: bash train.sh $name"
   done
 }
 
