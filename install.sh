@@ -34,6 +34,8 @@ echo "== simulator environment (.venv-robomme)"
 [ -x .venv-robomme/bin/python ] || uv venv .venv-robomme --python 3.11
 # upstream requirements, with the ManiSkill fork pinned to the commit used in the paper (upstream: branch "dev")
 grep -v "ManiSkill.git" examples/robomme/requirements.txt > .venv-robomme/requirements.pinned.txt
+# Keep PyArrow compatible with the NumPy 1.x simulator environment.
+echo "pyarrow==19.0.1" >> .venv-robomme/requirements.pinned.txt
 uv pip install --python .venv-robomme/bin/python -r .venv-robomme/requirements.pinned.txt "$MANISKILL"
 uv pip install --python .venv-robomme/bin/python -e third_party/robomme_benchmark -e packages/openpi-client
 # flash-attn (optional upstream) is not needed: the client runs the VLM sub-goal predictors with sdpa attention
@@ -43,5 +45,5 @@ cp "$REPO/configs/perceptual-framesamp-modul-noclock.yaml" src/mme_vla_suite/mod
 
 echo "== versions used in the paper: jax/jaxlib 0.5.3, flax 0.10.2, torch 2.7.1 (.venv); mani_skill 3.0.0b21, sapien 3.0.3, torch 2.9.1 (.venv-robomme)"
 .venv/bin/python -c "import jax, flax, torch; print('.venv:', 'jax', jax.__version__, 'flax', flax.__version__, 'torch', torch.__version__)"
-.venv-robomme/bin/python -c "import mani_skill, sapien, torch; print('.venv-robomme:', 'mani_skill', mani_skill.__version__, 'sapien', sapien.__version__, 'torch', torch.__version__)"
+.venv-robomme/bin/python -c "import mani_skill, sapien, torch, pyarrow; print('.venv-robomme:', 'mani_skill', mani_skill.__version__, 'sapien', sapien.__version__, 'torch', torch.__version__, 'pyarrow', pyarrow.__version__)"
 echo "done. Next: bash download.sh"
