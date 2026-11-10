@@ -29,6 +29,13 @@
 <p align="center"><em>Two 5-second pauses make a released memory VLA press the button after only 2 of 3 repetitions (47 &rarr; 16 of 50).
 When the same pauses are hidden from memory, success returns (45 of 50).</em></p>
 
+### 🎬 Demo
+
+<p align="center"><img src="assets/demo.gif" width="800" alt="The same PickXtimes episode three times on a shared clock: without events the policy presses after 3 of 3 repetitions; with two 5-second pauses that enter memory it presses after only 2; with the same pauses hidden from memory it presses after 3 again"></p>
+<p align="center"><em>One PickXtimes episode (K&nbsp;=&nbsp;3, released FrameSamp-Modul, front camera), cut from our evaluation videos
+and played at 3.75&times; speed on a shared environment-step clock; orange marks the two 5-second pauses. Left: no event. Middle: the robot pauses and the pause frames
+enter memory, so the policy presses after 2 repetitions. Right: the same pauses, hidden from memory.</em></p>
+
 Many memory-augmented VLA policies **fill memory by time**: they sample frames uniformly over the episode and stamp
 each with its time step. But time passes even when nothing happens. We show that such a memory **cannot tell waiting
 from working**: a brief *null event* (a pause, a wrist fidget, a grasp at air) makes the policy count the interval as
@@ -94,6 +101,17 @@ bash download.sh train     # pi0.5 base weights and the preprocessed RoboMME tra
 `bash download.sh` fetches all hosted checkpoints; any model can also be trained with a single command (see [Training](#-training)).
 
 ## 🚀 Quick Start
+
+**Test run (1 episode, ~2 min on one GPU).** Checks the installation end to end: policy server, simulator, two
+5-second pauses, result line.
+
+```bash
+bash run_eval.sh --episodes 1 --event pause --tag quicktest    # add --render lavapipe if GPU rendering hangs
+# [run_eval] quicktest: 0/1 successes (results/quicktest/ckpt79999/seed7)
+```
+
+In our run, the first test episode ends with an early press (`results/quicktest/client.log`:
+`result fail ... button pressed`). A single episode is a smoke test, not a result.
 
 One condition = one command. It starts the policy server, runs 50 paired test episodes and prints the success count:
 
