@@ -95,8 +95,8 @@ bash download.sh train     # pi0.5 base weights and the preprocessed RoboMME tra
 | `perceptual-framesamp-modul` | released RoboMME memory VLA (time-sampled, time-stamped memory) | [🤗 Yinpei/perceptual-framesamp-modul](https://huggingface.co/Yinpei/perceptual-framesamp-modul) |
 | `clock` | the same design trained from pi0.5 base (30k steps) | [🤗 benni23/memory-clock](https://huggingface.co/benni23/memory-clock) |
 | `noclock` | the same without time encoding (`use_pos_emb: false`) | [🤗 benni23/memory-clock](https://huggingface.co/benni23/memory-clock) |
-| `clock-retrain` | a second training run of `clock` (control for pause augmentation) | coming soon |
-| `pauseaug` / `pauseaug-weak` | Clock trained with pauses injected into the memory timeline | coming soon |
+| `clock-retrain` | a second training run of `clock` (control for pause augmentation) | [🤗 benni23/memory-clock](https://huggingface.co/benni23/memory-clock) |
+| `pauseaug` / `pauseaug-weak` | Clock trained with pauses injected into the memory timeline | [🤗 benni23/memory-clock](https://huggingface.co/benni23/memory-clock) |
 
 `bash download.sh` fetches all hosted checkpoints; any model can also be trained with a single command (see [Training](#-training)).
 
