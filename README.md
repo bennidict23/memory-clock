@@ -1,9 +1,8 @@
 <h1 align="center">Is Your Robot's Memory Just a Clock?</h1>
 <p align="center"><strong>Temporal Shortcuts in Memory-Augmented VLA Policies</strong></p>
 
-<!-- TODO after arXiv: replace the arXiv badge link and the Citation block -->
 <p align="center">
-  <a href="#citation"><img src="https://img.shields.io/badge/arXiv-coming_soon-b31b1b?style=flat-square&logo=arxiv&logoColor=white" alt="arXiv"></a>
+  <a href="https://arxiv.org/abs/2611.14488"><img src="https://img.shields.io/badge/arXiv-2611.14488-b31b1b?style=flat-square&logo=arxiv&logoColor=white" alt="arXiv"></a>
   <a href="https://github.com/RoboMME/robomme_policy_learning"><img src="https://img.shields.io/badge/Benchmark-RoboMME-2588a6?style=flat-square" alt="RoboMME"></a>
   <a href="https://huggingface.co/benni23/memory-clock"><img src="https://img.shields.io/badge/Hugging_Face-Models-ffd21e?style=flat-square&logo=huggingface&logoColor=black" alt="Hugging Face Models"></a>
   <img src="https://img.shields.io/badge/Python-3.11-3776ab?style=flat-square&logo=python&logoColor=white" alt="Python 3.11">
@@ -21,6 +20,7 @@
 
 ## 📢 News
 
+- **[2026.11.11]** Paper available on [arXiv](https://arxiv.org/abs/2611.14488).
 - **[2026.11]** Code released: null-event evaluation, memory controls, the test-time event index, and training with pause augmentation.
 
 ---
@@ -219,4 +219,16 @@ the released RoboMME checkpoints and Qwen3-VL keep their own licenses.
 
 ## Citation
 
-If you find this work useful, please consider citing our paper (BibTeX coming with the arXiv version).
+If you find this work useful, please consider citing our paper:
+
+```bibtex
+@misc{zhang2026robotmemoryclock,
+  title={Is Your Robot's Memory Just a Clock? Temporal Shortcuts in Memory-Augmented VLA Policies},
+  author={Chubin Zhang and Bo An},
+  year={2026},
+  eprint={2611.14488},
+  archivePrefix={arXiv},
+  primaryClass={cs.RO},
+  url={https://arxiv.org/abs/2611.14488}
+}
+```
